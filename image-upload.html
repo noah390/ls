@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Image Upload | Lohoba Luxury</title>
+    <link rel="stylesheet" href="css/admin.css">
+    <script src="https://kit.fontawesome.com/4a3b1f73a2.js"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .upload-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .upload-header {
+            margin-bottom: 30px;
+        }
+        
+        .upload-header h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .upload-header p {
+            color: #666;
+            font-size: 16px;
+        }
+        
+        .quick-upload-area {
+            border: 3px dashed #007bff;
+            border-radius: 15px;
+            padding: 50px 30px;
+            background: #f8f9ff;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            margin-bottom: 30px;
+        }
+        
+        .quick-upload-area:hover {
+            border-color: #0056b3;
+            background: #f0f8ff;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,123,255,0.2);
+        }
+        
+        .quick-upload-area.drag-over {
+            border-color: #28a745;
+            background: #f0fff0;
+            border-style: solid;
+        }
+        
+        .upload-icon {
+            font-size: 64px;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+        
+        .upload-text {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .upload-subtext {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+        
+        .upload-button {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .upload-button:hover {
+            background: linear-gradient(135deg, #0056b3, #004085);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,123,255,0.3);
+        }
+        
+        .uploaded-images {
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 20px;
+        }
+        
+        .uploaded-image {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .uploaded-image:hover {
+            transform: scale(1.05);
+        }
+        
+        .uploaded-image img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        
+        .image-actions {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            display: flex;
+            gap: 5px;
+        }
+        
+        .action-btn {
+            background: rgba(0,0,0,0.7);
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 12px;
+            transition: background 0.3s ease;
+        }
+        
+        .action-btn:hover {
+            background: rgba(0,0,0,0.9);
+        }
+        
+        .copy-btn {
+            background: rgba(40,167,69,0.9);
+        }
+        
+        .delete-btn {
+            background: rgba(220,53,69,0.9);
+        }
+        
+        .back-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255,255,255,0.9);
+            color: #333;
+            padding: 10px 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .back-link:hover {
+            background: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            z-index: 1000;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .notification.error {
+            background: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <a href="admin.html" class="back-link">
+        <i class="fas fa-arrow-left"></i> Back to Admin
+    </a>
+    
+    <div class="upload-container">
+        <div class="upload-header">
+            <h1><i class="fas fa-images"></i> Quick Image Upload</h1>
+            <p>Upload product images quickly and easily</p>
+        </div>
+        
+        <div class="quick-upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()">
+            <div class="upload-icon">
+                <i class="fas fa-cloud-upload-alt"></i>
+            </div>
+            <div class="upload-text">Drop images here or click to browse</div>
+            <div class="upload-subtext">Supports JPG, PNG, GIF files up to 2MB each</div>
+            <button type="button" class="upload-button">
+                <i class="fas fa-upload"></i> Choose Images
+            </button>
+        </div>
+        
+        <input type="file" id="fileInput" multiple accept="image/*" style="display: none;">
+        
+        <div class="uploaded-images" id="uploadedImages"></div>
+    </div>
+    
+    <script>
+        let uploadedImages = JSON.parse(localStorage.getItem('uploadedImages') || '[]');
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            displayUploadedImages();
+            setupEventListeners();
+        });
+        
+        function setupEventListeners() {
+            const uploadArea = document.getElementById('uploadArea');
+            const fileInput = document.getElementById('fileInput');
+            
+            // File input change
+            fileInput.addEventListener('change', handleFileSelect);
+            
+            // Drag and drop
+            uploadArea.addEventListener('dragover', handleDragOver);
+            uploadArea.addEventListener('dragleave', handleDragLeave);
+            uploadArea.addEventListener('drop', handleDrop);
+            
+            // Prevent default drag behaviors
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                uploadArea.addEventListener(eventName, preventDefaults, false);
+                document.body.addEventListener(eventName, preventDefaults, false);
+            });
+        }
+        
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        
+        function handleDragOver(e) {
+            document.getElementById('uploadArea').classList.add('drag-over');
+        }
+        
+        function handleDragLeave(e) {
+            document.getElementById('uploadArea').classList.remove('drag-over');
+        }
+        
+        function handleDrop(e) {
+            document.getElementById('uploadArea').classList.remove('drag-over');
+            const files = e.dataTransfer.files;
+            processFiles(files);
+        }
+        
+        function handleFileSelect(e) {
+            const files = e.target.files;
+            processFiles(files);
+        }
+        
+        function processFiles(files) {
+            Array.from(files).forEach(file => {
+                if (validateFile(file)) {
+                    uploadImage(file);
+                }
+            });
+        }
+        
+        function validateFile(file) {
+            if (!file.type.startsWith('image/')) {
+                showNotification('Please select valid image files only!', 'error');
+                return false;
+            }
+            
+            if (file.size > 2 * 1024 * 1024) {
+                showNotification(`${file.name} is too large. Max size is 2MB.`, 'error');
+                return false;
+            }
+            
+            return true;
+        }
+        
+        function uploadImage(file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const imageData = {
+                    id: Date.now() + Math.random(),
+                    name: file.name,
+                    url: e.target.result,
+                    uploadDate: new Date().toISOString()
+                };
+                
+                uploadedImages.push(imageData);
+                localStorage.setItem('uploadedImages', JSON.stringify(uploadedImages));
+                displayUploadedImages();
+                showNotification(`${file.name} uploaded successfully!`);
+            };
+            reader.readAsDataURL(file);
+        }
+        
+        function displayUploadedImages() {
+            const container = document.getElementById('uploadedImages');
+            
+            if (uploadedImages.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #666; font-style: italic;">No images uploaded yet</p>';
+                return;
+            }
+            
+            container.innerHTML = uploadedImages.map(image => `
+                <div class="uploaded-image">
+                    <img src="${image.url}" alt="${image.name}">
+                    <div class="image-actions">
+                        <button class="action-btn copy-btn" onclick="copyImageUrl('${image.url}')" title="Copy URL">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                        <button class="action-btn delete-btn" onclick="deleteImage('${image.id}')" title="Delete">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function copyImageUrl(url) {
+            navigator.clipboard.writeText(url).then(() => {
+                showNotification('Image URL copied to clipboard!');
+            }).catch(() => {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = url;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                showNotification('Image URL copied to clipboard!');
+            });
+        }
+        
+        function deleteImage(id) {
+            if (confirm('Are you sure you want to delete this image?')) {
+                uploadedImages = uploadedImages.filter(img => img.id != id);
+                localStorage.setItem('uploadedImages', JSON.stringify(uploadedImages));
+                displayUploadedImages();
+                showNotification('Image deleted successfully!');
+            }
+        }
+        
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => notification.classList.add('show'), 100);
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

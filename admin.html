@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel | Lohoba Luxury</title>
+    <link rel="stylesheet" href="css/admin.css">
+    <script src="https://kit.fontawesome.com/4a3b1f73a2.js"></script>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
+    <script src="config.js"></script>
+    <script src="products.js"></script>
+</head>
+<body>
+    <div class="admin-container">
+        <div class="admin-header">
+            <h1>Lohoba Luxury Admin Panel</h1>
+            <div class="header-actions">
+                <button onclick="toggleAdminMode()" class="admin-mode-btn" id="adminModeBtn">
+                    <i class="fas fa-edit"></i> Enable Edit Mode
+                </button>
+                <button onclick="adminLogout()" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+                <button onclick="window.location.href='index.html'" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> Back to Store
+                </button>
+            </div>
+        </div>
+        
+        <div class="admin-content">
+            <div class="admin-card">
+                <h3><i class="fas fa-user-plus"></i> Create Admin User</h3>
+                <p>Create new administrator accounts</p>
+                <button class="admin-btn" onclick="showCreateAdminForm()">Create Admin</button>
+            </div>
+            
+            <div class="admin-card">
+                <h3><i class="fas fa-user"></i> Create User</h3>
+                <p>Create new customer accounts</p>
+                <button class="admin-btn" onclick="showCreateUserForm()">Create User</button>
+            </div>
+            
+            <div class="admin-card">
+                <h3><i class="fas fa-users-cog"></i> Manage Users</h3>
+                <p>Edit, suspend, or delete user accounts</p>
+                <button class="admin-btn" onclick="showUserManagement()">Manage Users</button>
+            </div>
+            
+            <div class="admin-card">
+                <h3><i class="fas fa-users"></i> View Users</h3>
+                <p>View all registered customers</p>
+                <button class="admin-btn" onclick="showCustomerManagement()">View Users</button>
+            </div>
+            
+            <div class="admin-card">
+                <h3><i class="fas fa-shield-alt"></i> Security Settings</h3>
+                <p>Configure security policies and access controls</p>
+                <button class="admin-btn" onclick="showSecuritySettings()">Security Settings</button>
+            </div>
+            
+            <div class="admin-card">
+                <h3><i class="fas fa-cog"></i> Settings</h3>
+                <p>General site and business configuration</p>
+                <button class="admin-btn" onclick="showSettings()">Settings</button>
+            </div>
+            
+            <div class="admin-card">
+                <h3><i class="fas fa-box"></i> Product Management</h3>
+                <p>Manage inventory, add new products, update pricing</p>
+                <button class="admin-btn" onclick="showProductManagement()">Manage Products</button>
+            </div>
+            
+            <div class="admin-card">
+                <h3><i class="fas fa-images"></i> Quick Image Upload</h3>
+                <p>Upload product images quickly and easily</p>
+                <button class="admin-btn" onclick="window.open('image-upload.html', '_blank')">Upload Images</button>
+            </div>
+            
+            <div class="admin-card">
+                <h3><i class="fas fa-shopping-cart"></i> Orders</h3>
+                <p>View and manage customer orders</p>
+                <button class="admin-btn" onclick="showOrderManagement()">View Orders</button>
+            </div>
+            
+            <div class="admin-card">
+                <h3><i class="fas fa-user-shield"></i> Admin Users</h3>
+                <p>Manage administrator accounts</p>
+                <button class="admin-btn" onclick="showAdminManagement()">Manage Admins</button>
+            </div>
+            
+            <div class="admin-card">
+                <h3><i class="fas fa-chart-bar"></i> Analytics</h3>
+                <p>Sales reports and website analytics</p>
+                <button class="admin-btn" onclick="showAnalytics()">View Analytics</button>
+            </div>
+        </div>
+        
+        <!-- Management Sections -->
+        <div id="productManagement" class="management-section" style="display: none;">
+            <div class="section-header">
+                <h2><i class="fas fa-box"></i> Product Management</h2>
+                <button onclick="hideAllSections()" class="close-section">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="management-actions">
+                <button onclick="showAddProductForm()" class="action-btn add-btn">
+                    <i class="fas fa-plus"></i> Add New Product
+                </button>
+                <button onclick="syncWithWebsite()" class="action-btn sync-btn">
+                    <i class="fas fa-sync"></i> Sync with Website
+                </button>
+            </div>
+            
+            <div id="productList" class="product-list"></div>
+        </div>
+        
+        <div id="orderManagement" class="management-section" style="display: none;">
+            <div class="section-header">
+                <h2><i class="fas fa-shopping-cart"></i> Order Management</h2>
+                <button onclick="hideAllSections()" class="close-section">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div id="orderList" class="order-list">
+                <p class="no-data">No orders found. Orders will appear here when customers make purchases.</p>
+            </div>
+        </div>
+        
+        <div id="customerManagement" class="management-section" style="display: none;">
+            <div class="section-header">
+                <h2><i class="fas fa-users"></i> Customer Management</h2>
+                <button onclick="hideAllSections()" class="close-section">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div id="customerList" class="customer-list">
+                <p class="no-data">Loading customer data...</p>
+            </div>
+        </div>
+        
+        <div id="analytics" class="management-section" style="display: none;">
+            <div class="section-header">
+                <h2><i class="fas fa-chart-bar"></i> Analytics Dashboard</h2>
+                <button onclick="hideAllSections()" class="close-section">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="analytics-grid">
+                <div class="stat-card">
+                    <h3>Total Products</h3>
+                    <div class="stat-value" id="totalProducts">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Total Orders</h3>
+                    <div class="stat-value" id="totalOrders">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Total Customers</h3>
+                    <div class="stat-value" id="totalCustomers">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Total Admins</h3>
+                    <div class="stat-value" id="totalAdmins">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Revenue</h3>
+                    <div class="stat-value" id="totalRevenue">₦0</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- User Management Section -->
+        <div id="userManagement" class="management-section" style="display: none;">
+            <div class="section-header">
+                <h2><i class="fas fa-users-cog"></i> User Management</h2>
+                <button onclick="hideAllSections()" class="close-section">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="management-actions">
+                <button onclick="showCreateUserForm()" class="action-btn add-btn">
+                    <i class="fas fa-plus"></i> Add New User
+                </button>
+                <button onclick="loadRegularUsers(); displayUserList()" class="action-btn sync-btn">
+                    <i class="fas fa-sync"></i> Refresh List
+                </button>
+            </div>
+            
+            <div id="userList" class="user-list"></div>
+        </div>
+        
+        <!-- Admin Management Section -->
+        <div id="adminManagement" class="management-section" style="display: none;">
+            <div class="section-header">
+                <h2><i class="fas fa-user-shield"></i> Admin Management</h2>
+                <button onclick="hideAllSections()" class="close-section">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="management-actions">
+                <button onclick="showCreateAdminForm()" class="action-btn add-btn">
+                    <i class="fas fa-plus"></i> Add New Admin
+                </button>
+                <button onclick="loadAdminUsers(); displayAdminList()" class="action-btn sync-btn">
+                    <i class="fas fa-sync"></i> Refresh List
+                </button>
+            </div>
+            
+            <div id="adminList" class="admin-list"></div>
+        </div>
+        
+        <!-- Security Settings Section -->
+        <div id="securitySettings" class="management-section" style="display: none;">
+            <div class="section-header">
+                <h2><i class="fas fa-shield-alt"></i> Security Settings</h2>
+                <button onclick="hideAllSections()" class="close-section">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div id="securityContainer" class="settings-container"></div>
+        </div>
+        
+        <!-- General Settings Section -->
+        <div id="settings" class="management-section" style="display: none;">
+            <div class="section-header">
+                <h2><i class="fas fa-cog"></i> General Settings</h2>
+                <button onclick="hideAllSections()" class="close-section">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div id="settingsContainer" class="settings-container"></div>
+        </div>
+    </div>
+    
+    <script src="setup-demo-data.js"></script>
+    <script src="js/admin.js"></script>
+    <script src="sync-manager.js"></script>
+</body>
+</html>

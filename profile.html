@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile | Lohoba Luxury</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <script src="https://kit.fontawesome.com/4a3b1f73a2.js"></script>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
+    <style>
+        .profile-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .profile-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #666;
+            position: relative;
+            overflow: hidden;
+        }
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .avatar-upload {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            cursor: pointer;
+        }
+        .profile-form {
+            display: grid;
+            gap: 1.5rem;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+        .form-group input {
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        .btn-primary {
+            background: #007bff;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #0056b3;
+        }
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+            margin-left: 1rem;
+        }
+        .btn-secondary:hover {
+            background: #545b62;
+        }
+        .profile-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .stat-card {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #007bff;
+        }
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 1rem;
+            border-radius: 5px;
+            color: white;
+            z-index: 1000;
+            transform: translateX(100%);
+            transition: transform 0.3s;
+        }
+        .notification.success {
+            background: #28a745;
+        }
+        .notification.error {
+            background: #dc3545;
+        }
+        .notification.show {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body>
+    <div id="header"></div>
+    
+    <div class="profile-container">
+        <div class="profile-header">
+            <div class="profile-avatar" id="profileAvatar">
+                <i class="fas fa-user"></i>
+                <button class="avatar-upload" onclick="document.getElementById('avatarInput').click()">
+                    <i class="fas fa-camera"></i>
+                </button>
+                <input type="file" id="avatarInput" accept="image/*" style="display: none;" onchange="handleAvatarUpload(this)">
+            </div>
+            <h2 id="profileName">Loading...</h2>
+            <p id="profileEmail">Loading...</p>
+        </div>
+        
+        <div class="profile-stats">
+            <div class="stat-card">
+                <div class="stat-value" id="totalOrders">0</div>
+                <div class="stat-label">Total Orders</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="totalSpent">₦0</div>
+                <div class="stat-label">Total Spent</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="memberSince">-</div>
+                <div class="stat-label">Member Since</div>
+            </div>
+        </div>
+        
+        <form class="profile-form" id="profileForm">
+            <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone">
+            </div>
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" id="address">
+            </div>
+            <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" id="city">
+            </div>
+            <div style="display: flex; gap: 1rem;">
+                <button type="submit" class="btn btn-primary">Update Profile</button>
+                <button type="button" class="btn btn-secondary" onclick="window.location.href='index.html'">Back to Store</button>
+            </div>
+        </form>
+    </div>
+    
+    <div id="footer"></div>
+    
+    <script>
+        let currentUser = null;
+        
+        // Load header and footer
+        function load(url, elementId) {
+            const req = new XMLHttpRequest();
+            req.open("GET", url, false);
+            req.send(null);
+            document.getElementById(elementId).innerHTML = req.responseText;
+        }
+        
+        load("header.html", "header");
+        load("footer.html", "footer");
+        
+        // Initialize profile
+        document.addEventListener('DOMContentLoaded', async function() {
+            await loadUserProfile();
+            loadUserStats();
+        });
+        
+        // Load user profile
+        async function loadUserProfile() {
+            try {
+                const { data: { user }, error } = await supabase.auth.getUser();
+                
+                if (error || !user) {
+                    window.location.href = 'index.html';
+                    return;
+                }
+                
+                currentUser = user;
+                
+                // Update profile display
+                document.getElementById('profileName').textContent = user.user_metadata?.full_name || 'User';
+                document.getElementById('profileEmail').textContent = user.email;
+                document.getElementById('memberSince').textContent = new Date(user.created_at).toLocaleDateString();
+                
+                // Load avatar
+                if (user.user_metadata?.avatar_url) {
+                    document.getElementById('profileAvatar').innerHTML = `
+                        <img src="${user.user_metadata.avatar_url}" alt="Profile">
+                        <button class="avatar-upload" onclick="document.getElementById('avatarInput').click()">
+                            <i class="fas fa-camera"></i>
+                        </button>
+                    `;
+                }
+                
+                // Fill form
+                document.getElementById('fullName').value = user.user_metadata?.full_name || '';
+                document.getElementById('phone').value = user.user_metadata?.phone || '';
+                document.getElementById('address').value = user.user_metadata?.address || '';
+                document.getElementById('city').value = user.user_metadata?.city || '';
+                
+            } catch (error) {
+                console.error('Error loading profile:', error);
+                showNotification('Error loading profile', 'error');
+            }
+        }
+        
+        // Handle avatar upload
+        function handleAvatarUpload(input) {
+            const file = input.files[0];
+            if (!file) return;
+            
+            if (!file.type.startsWith('image/')) {
+                showNotification('Please select a valid image file', 'error');
+                return;
+            }
+            
+            if (file.size > 1024 * 1024) {
+                showNotification('Image size should be less than 1MB', 'error');
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = async function(e) {
+                const avatarUrl = e.target.result;
+                
+                try {
+                    const { error } = await supabase.auth.updateUser({
+                        data: { avatar_url: avatarUrl }
+                    });
+                    
+                    if (error) {
+                        showNotification('Error updating avatar', 'error');
+                        return;
+                    }
+                    
+                    document.getElementById('profileAvatar').innerHTML = `
+                        <img src="${avatarUrl}" alt="Profile">
+                        <button class="avatar-upload" onclick="document.getElementById('avatarInput').click()">
+                            <i class="fas fa-camera"></i>
+                        </button>
+                    `;
+                    
+                    showNotification('Avatar updated successfully!', 'success');
+                } catch (error) {
+                    showNotification('Error updating avatar', 'error');
+                }
+            };
+            
+            reader.readAsDataURL(file);
+        }
+        
+        // Handle profile form submission
+        document.getElementById('profileForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            try {
+                const { error } = await supabase.auth.updateUser({
+                    data: {
+                        full_name: document.getElementById('fullName').value,
+                        phone: document.getElementById('phone').value,
+                        address: document.getElementById('address').value,
+                        city: document.getElementById('city').value
+                    }
+                });
+                
+                if (error) {
+                    showNotification('Error updating profile', 'error');
+                    return;
+                }
+                
+                document.getElementById('profileName').textContent = document.getElementById('fullName').value;
+                showNotification('Profile updated successfully!', 'success');
+                
+            } catch (error) {
+                showNotification('Error updating profile', 'error');
+            }
+        });
+        
+        // Load user statistics
+        function loadUserStats() {
+            const orders = JSON.parse(localStorage.getItem('lohobaOrders') || '[]');
+            const userOrders = orders.filter(order => order.userId === currentUser?.id);
+            
+            document.getElementById('totalOrders').textContent = userOrders.length;
+            
+            const totalSpent = userOrders.reduce((sum, order) => sum + parseFloat(order.total || 0), 0);
+            document.getElementById('totalSpent').textContent = `₦${totalSpent.toLocaleString()}`;
+        }
+        
+        // Show notification
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => notification.classList.add('show'), 10);
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

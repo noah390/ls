@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin System Demo | Lohoba Luxury</title>
+    <link rel="stylesheet" href="css/admin.css">
+    <script src="https://kit.fontawesome.com/4a3b1f73a2.js"></script>
+    <style>
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: 'Lato', sans-serif;
+        }
+        .demo-header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+        }
+        .demo-section {
+            background: white;
+            margin: 20px 0;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .feature-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #007bff;
+        }
+        .feature-card h4 {
+            color: #007bff;
+            margin: 0 0 10px 0;
+        }
+        .access-info {
+            background: #e7f3ff;
+            border: 1px solid #b3d9ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .credentials {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-family: monospace;
+        }
+        .btn-demo {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 10px 10px 10px 0;
+            transition: background 0.3s ease;
+        }
+        .btn-demo:hover {
+            background: #0056b3;
+        }
+        .btn-demo.secondary {
+            background: #6c757d;
+        }
+        .btn-demo.secondary:hover {
+            background: #545b62;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <div class="demo-header">
+            <h1><i class="fas fa-shield-alt"></i> Lohoba Luxury Admin System</h1>
+            <p>Complete Administrative Control Panel with User Management & Security Features</p>
+        </div>
+
+        <div class="demo-section">
+            <h2><i class="fas fa-info-circle"></i> System Overview</h2>
+            <p>This comprehensive admin system provides complete control over your e-commerce platform with the following key features:</p>
+            
+            <div class="demo-grid">
+                <div class="feature-card">
+                    <h4><i class="fas fa-user-plus"></i> Create Admin User</h4>
+                    <p>Create new administrator accounts with different permission levels (Admin, Super Admin, Moderator)</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4><i class="fas fa-user"></i> Create User</h4>
+                    <p>Create new customer accounts directly from the admin panel</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4><i class="fas fa-users-cog"></i> Manage Users</h4>
+                    <p>Edit, suspend, activate, or delete user accounts with full control</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4><i class="fas fa-users"></i> View Users</h4>
+                    <p>View all registered customers with detailed information and statistics</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4><i class="fas fa-shield-alt"></i> Security Settings</h4>
+                    <p>Configure password policies, session management, and access controls</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4><i class="fas fa-cog"></i> Settings</h4>
+                    <p>General site configuration, business settings, and email preferences</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2><i class="fas fa-key"></i> Access Methods</h2>
+            
+            <div class="access-info">
+                <h3>Method 1: Direct Admin Panel Access</h3>
+                <p>Access the admin panel directly using the button below:</p>
+                <button class="btn-demo" onclick="window.open('admin.html', '_blank')">
+                    <i class="fas fa-external-link-alt"></i> Open Admin Panel
+                </button>
+                
+                <div class="credentials">
+                    <strong>Default Admin Credentials:</strong><br>
+                    Username: admin<br>
+                    Password: LHL2024
+                </div>
+            </div>
+            
+            <div class="access-info">
+                <h3>Method 2: Hidden Access from Main Site</h3>
+                <p>From the main website, click the user icon 5 times quickly, then enter the access code:</p>
+                <div class="credentials">
+                    Access Code: LHL2024
+                </div>
+                <button class="btn-demo secondary" onclick="window.open('index.html', '_blank')">
+                    <i class="fas fa-home"></i> Go to Main Site
+                </button>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2><i class="fas fa-list-check"></i> Feature Demonstrations</h2>
+            
+            <h3>User Management Features:</h3>
+            <ul>
+                <li><strong>Create Admin Users:</strong> Add new administrators with role-based permissions</li>
+                <li><strong>Create Regular Users:</strong> Add customer accounts with email and profile information</li>
+                <li><strong>Edit Users:</strong> Modify user information, status, and permissions</li>
+                <li><strong>Suspend/Activate Users:</strong> Control user access without deleting accounts</li>
+                <li><strong>Delete Users:</strong> Permanently remove user accounts when necessary</li>
+                <li><strong>View User Details:</strong> Access comprehensive user information and activity</li>
+            </ul>
+            
+            <h3>Security Features:</h3>
+            <ul>
+                <li><strong>Password Policies:</strong> Enforce strong password requirements</li>
+                <li><strong>Session Management:</strong> Control session timeouts and inactive user handling</li>
+                <li><strong>Access Control:</strong> IP whitelisting and login attempt limits</li>
+                <li><strong>Two-Factor Authentication:</strong> Enhanced security options</li>
+                <li><strong>Admin Authentication:</strong> Secure admin login system</li>
+            </ul>
+            
+            <h3>General Settings:</h3>
+            <ul>
+                <li><strong>Site Configuration:</strong> Manage site name, description, and contact information</li>
+                <li><strong>Business Settings:</strong> Configure currency, tax rates, and inventory tracking</li>
+                <li><strong>Email Settings:</strong> Control order confirmations and newsletter subscriptions</li>
+                <li><strong>Analytics Dashboard:</strong> View comprehensive statistics and metrics</li>
+            </ul>
+        </div>
+
+        <div class="demo-section">
+            <h2><i class="fas fa-chart-line"></i> Analytics & Monitoring</h2>
+            <p>The admin panel includes a comprehensive analytics dashboard showing:</p>
+            <div class="demo-grid">
+                <div class="feature-card">
+                    <h4>Product Statistics</h4>
+                    <p>Total products, inventory levels, and product performance</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Order Management</h4>
+                    <p>Order tracking, status updates, and revenue analytics</p>
+                </div>
+                <div class="feature-card">
+                    <h4>User Analytics</h4>
+                    <p>Customer registration trends and user activity metrics</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Admin Activity</h4>
+                    <p>Administrator account management and role distribution</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2><i class="fas fa-rocket"></i> Getting Started</h2>
+            <p>Follow these steps to start using the admin system:</p>
+            <ol>
+                <li><strong>Access the Admin Panel:</strong> Use one of the access methods above</li>
+                <li><strong>Login:</strong> Use the default credentials or create your own admin account</li>
+                <li><strong>Create Admin Users:</strong> Set up additional administrator accounts as needed</li>
+                <li><strong>Configure Security:</strong> Set up security policies and access controls</li>
+                <li><strong>Manage Users:</strong> Start creating and managing customer accounts</li>
+                <li><strong>Customize Settings:</strong> Configure site and business settings to match your needs</li>
+            </ol>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="btn-demo" onclick="window.open('admin.html', '_blank')" style="font-size: 16px; padding: 15px 30px;">
+                    <i class="fas fa-play"></i> Start Using Admin Panel
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel Test | Lohoba Luxury</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .test-button:hover {
+            background: #0056b3;
+        }
+        .success {
+            color: #28a745;
+            font-weight: bold;
+        }
+        .error {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        .result {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+            background: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lohoba Luxury Admin Panel Test Suite</h1>
+    
+    <div class="test-section">
+        <h2>Product Management Tests</h2>
+        <button class="test-button" onclick="testProductLoad()">Test Product Loading</button>
+        <button class="test-button" onclick="testProductAdd()">Test Add Product</button>
+        <button class="test-button" onclick="testProductSync()">Test Product Sync</button>
+        <div id="productTestResults"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Order Management Tests</h2>
+        <button class="test-button" onclick="testOrderCreation()">Test Order Creation</button>
+        <button class="test-button" onclick="testOrderStorage()">Test Order Storage</button>
+        <div id="orderTestResults"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Authentication Tests</h2>
+        <button class="test-button" onclick="testAuthSystem()">Test Auth System</button>
+        <div id="authTestResults"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Admin Access Tests</h2>
+        <button class="test-button" onclick="testAdminAccess()">Test Admin Access</button>
+        <button class="test-button" onclick="testAdminMode()">Test Admin Mode</button>
+        <div id="adminTestResults"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Quick Actions</h2>
+        <button class="test-button" onclick="window.open('admin.html', '_blank')">Open Admin Panel</button>
+        <button class="test-button" onclick="window.open('index.html', '_blank')">Open Main Site</button>
+        <button class="test-button" onclick="clearAllData()">Clear All Test Data</button>
+    </div>
+
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
+    <script src="config.js"></script>
+    <script src="products.js"></script>
+    
+    <script>
+        function showResult(containerId, message, isSuccess = true) {
+            const container = document.getElementById(containerId);
+            const result = document.createElement('div');
+            result.className = 'result';
+            result.innerHTML = `<span class="${isSuccess ? 'success' : 'error'}">${isSuccess ? '✓' : '✗'}</span> ${message}`;
+            container.appendChild(result);
+        }
+        
+        function testProductLoad() {
+            const container = document.getElementById('productTestResults');
+            container.innerHTML = '';
+            
+            try {
+                const products = JSON.parse(localStorage.getItem('adminProducts') || '[]');
+                if (products.length > 0) {
+                    showResult('productTestResults', `Products loaded successfully: ${products.length} products found`);
+                } else {
+                    showResult('productTestResults', 'No products in storage, loading sample products');
+                    localStorage.setItem('adminProducts', JSON.stringify(window.sampleProducts || []));
+                    showResult('productTestResults', `Sample products loaded: ${window.sampleProducts?.length || 0} products`);
+                }
+            } catch (e) {
+                showResult('productTestResults', `Product loading failed: ${e.message}`, false);
+            }
+        }
+        
+        function testProductAdd() {
+            const container = document.getElementById('productTestResults');
+            
+            try {
+                const testProduct = {
+                    id: 'test-' + Date.now(),
+                    name: 'Test Product',
+                    brand: 'Lohoba Luxury',
+                    price: '50000',
+                    preview: 'img/img1.png',
+                    isAccessory: false
+                };
+                
+                const products = JSON.parse(localStorage.getItem('adminProducts') || '[]');
+                products.push(testProduct);
+                localStorage.setItem('adminProducts', JSON.stringify(products));
+                
+                showResult('productTestResults', `Test product added successfully: ${testProduct.name}`);
+            } catch (e) {
+                showResult('productTestResults', `Product addition failed: ${e.message}`, false);
+            }
+        }
+        
+        function testProductSync() {
+            const container = document.getElementById('productTestResults');
+            
+            try {
+                // Simulate sync by triggering storage event
+                const products = JSON.parse(localStorage.getItem('adminProducts') || '[]');
+                localStorage.setItem('adminProducts', JSON.stringify(products));
+                
+                showResult('productTestResults', 'Product sync test completed - check main site for updates');
+            } catch (e) {
+                showResult('productTestResults', `Product sync failed: ${e.message}`, false);
+            }
+        }
+        
+        function testOrderCreation() {
+            const container = document.getElementById('orderTestResults');
+            container.innerHTML = '';
+            
+            try {
+                const testOrder = {
+                    id: 'test-order-' + Date.now(),
+                    date: new Date().toISOString(),
+                    items: [
+                        { id: '1', name: 'Test Item', price: '25000', quantity: 2 }
+                    ],
+                    total: 50000,
+                    status: 'pending',
+                    customerName: 'Test Customer',
+                    customerEmail: 'test@example.com'
+                };
+                
+                const orders = JSON.parse(localStorage.getItem('lohobaOrders') || '[]');
+                orders.push(testOrder);
+                localStorage.setItem('lohobaOrders', JSON.stringify(orders));
+                
+                showResult('orderTestResults', `Test order created: ${testOrder.id}`);
+            } catch (e) {
+                showResult('orderTestResults', `Order creation failed: ${e.message}`, false);
+            }
+        }
+        
+        function testOrderStorage() {
+            const container = document.getElementById('orderTestResults');
+            
+            try {
+                const orders = JSON.parse(localStorage.getItem('lohobaOrders') || '[]');
+                showResult('orderTestResults', `Order storage working: ${orders.length} orders found`);
+            } catch (e) {
+                showResult('orderTestResults', `Order storage failed: ${e.message}`, false);
+            }
+        }
+        
+        function testAuthSystem() {
+            const container = document.getElementById('authTestResults');
+            container.innerHTML = '';
+            
+            try {
+                if (typeof supabase !== 'undefined') {
+                    showResult('authTestResults', 'Supabase client initialized successfully');
+                    
+                    // Test auth state
+                    supabase.auth.getUser().then(({ data: { user } }) => {
+                        if (user) {
+                            showResult('authTestResults', `User authenticated: ${user.email}`);
+                        } else {
+                            showResult('authTestResults', 'No user currently authenticated');
+                        }
+                    }).catch(e => {
+                        showResult('authTestResults', `Auth check failed: ${e.message}`, false);
+                    });
+                } else {
+                    showResult('authTestResults', 'Supabase client not found', false);
+                }
+            } catch (e) {
+                showResult('authTestResults', `Auth system test failed: ${e.message}`, false);
+            }
+        }
+        
+        function testAdminAccess() {
+            const container = document.getElementById('adminTestResults');
+            container.innerHTML = '';
+            
+            try {
+                // Test admin code
+                const adminCode = 'LHL2024';
+                showResult('adminTestResults', `Admin access code: ${adminCode}`);
+                showResult('adminTestResults', 'Admin panel accessible at admin.html');
+                
+                // Test admin functions
+                if (typeof handleUserClick === 'function') {
+                    showResult('adminTestResults', 'Admin access function available');
+                } else {
+                    showResult('adminTestResults', 'Admin access function not loaded', false);
+                }
+            } catch (e) {
+                showResult('adminTestResults', `Admin access test failed: ${e.message}`, false);
+            }
+        }
+        
+        function testAdminMode() {
+            const container = document.getElementById('adminTestResults');
+            
+            try {
+                // Test admin mode toggle
+                window.isAdminLoggedIn = true;
+                showResult('adminTestResults', 'Admin mode enabled for testing');
+                
+                setTimeout(() => {
+                    window.isAdminLoggedIn = false;
+                    showResult('adminTestResults', 'Admin mode disabled');
+                }, 2000);
+            } catch (e) {
+                showResult('adminTestResults', `Admin mode test failed: ${e.message}`, false);
+            }
+        }
+        
+        function clearAllData() {
+            if (confirm('This will clear all test data. Continue?')) {
+                localStorage.removeItem('adminProducts');
+                localStorage.removeItem('lohobaOrders');
+                localStorage.removeItem('lohobaCart');
+                
+                // Reload sample products
+                if (window.sampleProducts) {
+                    localStorage.setItem('adminProducts', JSON.stringify(window.sampleProducts));
+                }
+                
+                alert('All test data cleared and sample products restored!');
+                location.reload();
+            }
+        }
+        
+        // Auto-run basic tests on load
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                testProductLoad();
+                testOrderStorage();
+                testAuthSystem();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

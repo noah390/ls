@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/main.css">
+    <title>About Us - Lohoba Luxury</title>
+    <link rel="icon" href="https://yt3.ggpht.com/a/AGF-l78km1YyNXmF0r3-0CycCA0HLA_i6zYn_8NZEg=s900-c-k-c0xffffffff-no-rj-mo" type="image/gif" sizes="16x16">
+    <script src="https://kit.fontawesome.com/4a3b1f73a2.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <script src="js/jQuery3.4.1.js"></script>
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <style>
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+        }
+        .about-hero {
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+        }
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #007bff, #0056b3);
+            border-radius: 2px;
+        }
+        .about-hero h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 25px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+        .about-hero p {
+            font-size: 1.3rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            margin-bottom: 80px;
+            align-items: center;
+        }
+        .about-text h2 {
+            color: #007bff;
+            margin-bottom: 25px;
+            font-size: 2.2rem;
+            font-weight: 600;
+            position: relative;
+        }
+        .about-text h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #007bff;
+            border-radius: 2px;
+        }
+        .about-text p {
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+        .about-image {
+            text-align: center;
+            position: relative;
+        }
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: 20px;
+            bottom: 20px;
+            background: linear-gradient(135deg, #007bff20, #0056b320);
+            border-radius: 20px;
+            z-index: -1;
+        }
+        .about-image img {
+            width: 100%;
+            max-width: 450px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,123,255,0.15);
+            transition: transform 0.3s ease;
+        }
+        .about-image img:hover {
+            transform: translateY(-5px);
+        }
+        .values-section {
+            background: linear-gradient(135deg, #ffffff, #f8f9fa);
+            padding: 80px 50px;
+            border-radius: 25px;
+            margin-bottom: 80px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,123,255,0.1);
+        }
+        .values-section h2 {
+            text-align: center;
+            margin-bottom: 60px;
+            color: #333;
+            font-size: 2.5rem;
+            font-weight: 600;
+            position: relative;
+        }
+        .values-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #007bff, #0056b3);
+            border-radius: 2px;
+        }
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 50px;
+        }
+        .value-item {
+            text-align: center;
+            padding: 40px 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,123,255,0.1);
+        }
+        .value-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,123,255,0.15);
+        }
+        .value-item i {
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 25px;
+            display: block;
+        }
+        .value-item h3 {
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+        .value-item p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+        .contact-cta {
+            text-align: center;
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            padding: 60px 50px;
+            border-radius: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+        .contact-cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+        @keyframes shimmer {
+            0%, 100% { transform: translateX(-100%) translateY(-100%) rotate(0deg); }
+            50% { transform: translateX(0%) translateY(0%) rotate(180deg); }
+        }
+        .contact-cta h2 {
+            margin-bottom: 25px;
+            font-size: 2.2rem;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+        .contact-cta p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        .contact-cta a {
+            display: inline-block;
+            background: white;
+            color: #007bff;
+            padding: 18px 40px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .contact-cta a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            background: #f8f9fa;
+        }
+        @media(max-width: 768px) {
+            .about-container {
+                padding: 60px 15px;
+            }
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+            .about-hero h1 {
+                font-size: 2.5rem;
+            }
+            .about-hero p {
+                font-size: 1.1rem;
+            }
+            .values-section {
+                padding: 50px 25px;
+            }
+            .values-section h2 {
+                font-size: 2rem;
+            }
+            .contact-cta {
+                padding: 40px 25px;
+            }
+            .contact-cta h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <div id="1"></div>
+    <script>
+        load("header.html");
+        function load(url)
+        {
+            req = new XMLHttpRequest();
+            req.open("GET", url, false);
+            req.send(null);
+            document.getElementById(1).innerHTML = req.responseText;
+        }
+    </script>
+
+    <!-- ABOUT US CONTENT -->
+    <div class="about-container">
+        <div class="about-hero">
+            <h1>About Lohoba Luxury</h1>
+            <p>Redefining elegance through premium fashion and accessories that celebrate your unique style</p>
+        </div>
+
+        <div class="about-content">
+            <div class="about-text">
+                <h2>Our Story</h2>
+                <p>Founded with a passion for exceptional quality and timeless design, Lohoba Luxury has been at the forefront of premium fashion for discerning customers who appreciate the finer things in life.</p>
+                <p>We believe that luxury isn't just about price—it's about craftsmanship, attention to detail, and the confidence that comes from wearing something truly special.</p>
+                
+                <h2>Our Mission</h2>
+                <p>To provide our customers with carefully curated, high-quality fashion and accessories that enhance their personal style while delivering exceptional value and service.</p>
+            </div>
+            <div class="about-image">
+                <img src="img/img1.png" alt="Lohoba Luxury Fashion">
+            </div>
+        </div>
+
+        <div class="values-section">
+            <h2 style="text-align: center; margin-bottom: 50px; color: #333;">Our Values</h2>
+            <div class="values-grid">
+                <div class="value-item">
+                    <i class="fas fa-gem"></i>
+                    <h3>Premium Quality</h3>
+                    <p>Every item is carefully selected for its superior materials and exceptional craftsmanship.</p>
+                </div>
+                <div class="value-item">
+                    <i class="fas fa-heart"></i>
+                    <h3>Customer First</h3>
+                    <p>Your satisfaction is our priority. We're committed to providing outstanding service and support.</p>
+                </div>
+                <div class="value-item">
+                    <i class="fas fa-star"></i>
+                    <h3>Style Excellence</h3>
+                    <p>We curate timeless pieces that transcend trends and enhance your personal style.</p>
+                </div>
+                <div class="value-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Trust & Reliability</h3>
+                    <p>Built on trust, we ensure secure transactions and reliable delivery of your luxury items.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-cta">
+            <h2>Ready to Experience Luxury?</h2>
+            <p>Discover our exclusive collection and find your perfect style today.</p>
+            <a href="products.html">Shop Now</a>
+        </div>
+        
+        <!-- Admin Login Section -->
+        <div class="admin-section" style="margin-top: 60px; text-align: center; padding: 20px; background: #f8f9fa; border-radius: 10px; border: 1px solid #e9ecef;">
+            <p style="color: #666; font-size: 14px; margin-bottom: 15px;">Store Management</p>
+            <button id="adminLoginBtn" style="background: #6c757d; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 12px;">Admin Access</button>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div id="4"></div>
+    <script>
+        load("footer.html");
+        function load(url)
+        {
+            req = new XMLHttpRequest();
+            req.open("GET", url, false);
+            req.send(null);
+            document.getElementById(4).innerHTML = req.responseText;
+        }
+    </script>
+    
+    <!-- Admin Login Script -->
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const adminBtn = document.getElementById('adminLoginBtn');
+            if (adminBtn) {
+                adminBtn.addEventListener('click', showAdminLogin);
+            }
+        });
+        
+        function showAdminLogin() {
+            const modal = document.createElement('div');
+            modal.className = 'auth-modal';
+            modal.style.cssText = `
+                display: block;
+                position: fixed;
+                z-index: 10000;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0,0,0,0.5);
+            `;
+            
+            modal.innerHTML = `
+                <div style="
+                    background-color: white;
+                    margin: 10% auto;
+                    padding: 30px;
+                    border-radius: 8px;
+                    width: 90%;
+                    max-width: 400px;
+                    position: relative;
+                    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+                ">
+                    <span style="
+                        color: #aaa;
+                        float: right;
+                        font-size: 28px;
+                        font-weight: bold;
+                        cursor: pointer;
+                        position: absolute;
+                        right: 15px;
+                        top: 10px;
+                    " onclick="this.parentElement.parentElement.remove()">&times;</span>
+                    <h2 style="margin: 0 0 20px 0; color: #333; text-align: center;">Admin Login</h2>
+                    <form id="adminLoginForm">
+                        <input type="email" id="adminEmail" placeholder="Admin Email" required style="
+                            width: 100%;
+                            padding: 12px;
+                            margin: 8px 0;
+                            border: 1px solid #ddd;
+                            border-radius: 4px;
+                            box-sizing: border-box;
+                            font-size: 14px;
+                        ">
+                        <input type="password" id="adminPassword" placeholder="Admin Password" required style="
+                            width: 100%;
+                            padding: 12px;
+                            margin: 8px 0;
+                            border: 1px solid #ddd;
+                            border-radius: 4px;
+                            box-sizing: border-box;
+                            font-size: 14px;
+                        ">
+                        <button type="submit" style="
+                            width: 100%;
+                            background-color: #007bff;
+                            color: white;
+                            padding: 12px;
+                            border: none;
+                            border-radius: 4px;
+                            cursor: pointer;
+                            font-size: 16px;
+                            font-weight: 600;
+                            margin-top: 10px;
+                        ">Access Admin Panel</button>
+                    </form>
+                    <div id="adminMessage" style="margin-top: 15px; text-align: center;"></div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            // Handle form submission
+            modal.querySelector('#adminLoginForm').onsubmit = async (e) => {
+                e.preventDefault();
+                const email = document.getElementById('adminEmail').value;
+                const password = document.getElementById('adminPassword').value;
+                const messageDiv = document.getElementById('adminMessage');
+                
+                // Admin credentials
+                const ADMIN_EMAIL = 'admin@lohobaluxury.com';
+                const ADMIN_PASSWORD = 'LohobAdmin2024!';
+                
+                if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
+                    messageDiv.innerHTML = '<p style="color: #28a745;">Admin access granted! Redirecting...</p>';
+                    // Enable admin mode
+                    if (typeof window.toggleAdminMode === 'function') {
+                        window.toggleAdminMode(true);
+                    }
+                    setTimeout(() => {
+                        modal.remove();
+                        showAdminPanel();
+                    }, 1500);
+                } else {
+                    messageDiv.innerHTML = '<p style="color: #dc3545;">Invalid admin credentials. Access denied.</p>';
+                }
+            };
+        }
+        
+        function showAdminPanel() {
+            const adminPanel = document.createElement('div');
+            adminPanel.id = 'adminPanel';
+            adminPanel.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: white;
+                z-index: 20000;
+                overflow-y: auto;
+                font-family: 'Lato', sans-serif;
+            `;
+            
+            adminPanel.innerHTML = `
+                <div style="background: #007bff; color: white; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto;">
+                        <h1 style="margin: 0; font-size: 24px;"><i class="fas fa-cog"></i> Lohoba Luxury Admin Panel</h1>
+                        <button onclick="closeAdminPanel()" style="background: rgba(255,255,255,0.2); border: none; color: white; padding: 8px 16px; border-radius: 4px; cursor: pointer;">Close Panel</button>
+                    </div>
+                </div>
+                
+                <div style="max-width: 1200px; margin: 0 auto; padding: 30px 20px;">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 40px;">
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; text-align: center; border: 1px solid #e9ecef;">
+                            <i class="fas fa-box" style="font-size: 32px; color: #007bff; margin-bottom: 10px;"></i>
+                            <h3 style="margin: 10px 0; color: #333;">Products</h3>
+                            <p style="color: #666; margin-bottom: 15px;">Manage inventory</p>
+                            <button onclick="showProductManager()" style="background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer;">Manage Products</button>
+                        </div>
+                        
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; text-align: center; border: 1px solid #e9ecef;">
+                            <i class="fas fa-shopping-cart" style="font-size: 32px; color: #28a745; margin-bottom: 10px;"></i>
+                            <h3 style="margin: 10px 0; color: #333;">Orders</h3>
+                            <p style="color: #666; margin-bottom: 15px;">View cart data</p>
+                            <button onclick="showOrderManager()" style="background: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer;">View Orders</button>
+                        </div>
+                        
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; text-align: center; border: 1px solid #e9ecef;">
+                            <i class="fas fa-users" style="font-size: 32px; color: #ffc107; margin-bottom: 10px;"></i>
+                            <h3 style="margin: 10px 0; color: #333;">Users</h3>
+                            <p style="color: #666; margin-bottom: 15px;">Manage customers</p>
+                            <button onclick="showUserManager()" style="background: #ffc107; color: #333; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer;">View Users</button>
+                        </div>
+                        
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; text-align: center; border: 1px solid #e9ecef;">
+                            <i class="fas fa-chart-bar" style="font-size: 32px; color: #dc3545; margin-bottom: 10px;"></i>
+                            <h3 style="margin: 10px 0; color: #333;">Analytics</h3>
+                            <p style="color: #666; margin-bottom: 15px;">View statistics</p>
+                            <button onclick="showAnalytics()" style="background: #dc3545; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer;">View Analytics</button>
+                        </div>
+                    </div>
+                    
+                    <div id="adminContent" style="background: white; border: 1px solid #e9ecef; border-radius: 8px; padding: 30px;">
+                        <div style="text-align: center; color: #666;">
+                            <i class="fas fa-hand-point-up" style="font-size: 48px; margin-bottom: 20px;"></i>
+                            <h3>Welcome to Admin Panel</h3>
+                            <p>Select a management option above to get started.</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(adminPanel);
+        }
+        
+        function showProductManager() {
+            const content = document.getElementById('adminContent');
+            const products = window.sampleProducts || [];
+            
+            content.innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h2 style="margin: 0; color: #333;"><i class="fas fa-box"></i> Product Management</h2>
+                    <button onclick="addNewProduct()" style="background: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer;"><i class="fas fa-plus"></i> Add Product</button>
+                </div>
+                
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; background: white;">
+                        <thead>
+                            <tr style="background: #f8f9fa;">
+                                <th style="padding: 12px; text-align: left; border-bottom: 2px solid #dee2e6;">ID</th>
+                                <th style="padding: 12px; text-align: left; border-bottom: 2px solid #dee2e6;">Name</th>
+                                <th style="padding: 12px; text-align: left; border-bottom: 2px solid #dee2e6;">Brand</th>
+                                <th style="padding: 12px; text-align: left; border-bottom: 2px solid #dee2e6;">Price</th>
+                                <th style="padding: 12px; text-align: left; border-bottom: 2px solid #dee2e6;">Type</th>
+                                <th style="padding: 12px; text-align: left; border-bottom: 2px solid #dee2e6;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${products.map(product => `
+                                <tr style="border-bottom: 1px solid #dee2e6;">
+                                    <td style="padding: 12px;">${product.id}</td>
+                                    <td style="padding: 12px;">${product.name}</td>
+                                    <td style="padding: 12px;">${product.brand}</td>
+                                    <td style="padding: 12px;">₦${product.price}</td>
+                                    <td style="padding: 12px;">${product.isAccessory ? 'Accessory' : 'Clothing'}</td>
+                                    <td style="padding: 12px;">
+                                        <button onclick="editProduct('${product.id}')" style="background: #007bff; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer; margin-right: 5px;">Edit</button>
+                                        <button onclick="deleteProduct('${product.id}')" style="background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer;">Delete</button>
+                                    </td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+        }
+        
+        function showOrderManager() {
+            const content = document.getElementById('adminContent');
+            const cart = JSON.parse(localStorage.getItem('lohobaCart') || '[]');
+            
+            content.innerHTML = `
+                <h2 style="margin-bottom: 20px; color: #333;"><i class="fas fa-shopping-cart"></i> Order Management</h2>
+                
+                ${cart.length === 0 ? `
+                    <div style="text-align: center; color: #666; padding: 40px;">
+                        <i class="fas fa-shopping-cart" style="font-size: 48px; margin-bottom: 20px;"></i>
+                        <h3>No items in cart</h3>
+                        <p>Customer cart is currently empty.</p>
+                    </div>
+                ` : `
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                        <h3 style="margin: 0 0 10px 0; color: #333;">Current Cart Items</h3>
+                        <p style="color: #666; margin: 0;">Total Items: ${cart.reduce((sum, item) => sum + item.quantity, 0)}</p>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <button onclick="clearCart()" style="background: #dc3545; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer;"><i class="fas fa-trash"></i> Clear Cart</button>
+                    </div>
+                    
+                    <div style="overflow-x: auto;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                                <tr style="background: #f8f9fa;">
+                                    <th style="padding: 12px; text-align: left; border-bottom: 2px solid #dee2e6;">Product</th>
+                                    <th style="padding: 12px; text-align: left; border-bottom: 2px solid #dee2e6;">Price</th>
+                                    <th style="padding: 12px; text-align: left; border-bottom: 2px solid #dee2e6;">Quantity</th>
+                                    <th style="padding: 12px; text-align: left; border-bottom: 2px solid #dee2e6;">Total</th>
+                                    <th style="padding: 12px; text-align: left; border-bottom: 2px solid #dee2e6;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${cart.map(item => `
+                                    <tr style="border-bottom: 1px solid #dee2e6;">
+                                        <td style="padding: 12px;">${item.name}</td>
+                                        <td style="padding: 12px;">₦${item.price}</td>
+                                        <td style="padding: 12px;">${item.quantity}</td>
+                                        <td style="padding: 12px;">₦${(parseInt(item.price) * item.quantity).toLocaleString()}</td>
+                                        <td style="padding: 12px;">
+                                            <button onclick="removeFromCart('${item.id}')" style="background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer; font-size: 12px;">Remove</button>
+                                        </td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                `}
+            `;
+        }
+        
+        function showUserManager() {
+            const content = document.getElementById('adminContent');
+            content.innerHTML = `
+                <h2 style="margin-bottom: 20px; color: #333;"><i class="fas fa-users"></i> User Management</h2>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 30px;">
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; text-align: center; border: 1px solid #e9ecef;">
+                        <i class="fas fa-user-plus" style="font-size: 32px; color: #28a745; margin-bottom: 10px;"></i>
+                        <h4 style="margin: 10px 0; color: #333;">Create Admin User</h4>
+                        <button onclick="createAdminUser()" style="background: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer;">Create User</button>
+                    </div>
+                    
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; text-align: center; border: 1px solid #e9ecef;">
+                        <i class="fas fa-users-cog" style="font-size: 32px; color: #007bff; margin-bottom: 10px;"></i>
+                        <h4 style="margin: 10px 0; color: #333;">Manage Users</h4>
+                        <button onclick="viewAllUsers()" style="background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer;">View Users</button>
+                    </div>
+                    
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; text-align: center; border: 1px solid #e9ecef;">
+                        <i class="fas fa-shield-alt" style="font-size: 32px; color: #ffc107; margin-bottom: 10px;"></i>
+                        <h4 style="margin: 10px 0; color: #333;">Security Settings</h4>
+                        <button onclick="securitySettings()" style="background: #ffc107; color: #333; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer;">Settings</button>
+                    </div>
+                </div>
+                
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 8px;">
+                    <h3 style="margin: 0 0 15px 0; color: #333;">User Management Features</h3>
+                    <p style="color: #666; margin: 5px 0;">• Create and manage admin accounts</p>
+                    <p style="color: #666; margin: 5px 0;">• View customer registration data</p>
+                    <p style="color: #666; margin: 5px 0;">• Monitor user authentication</p>
+                    <p style="color: #666; margin: 5px 0;">• Configure security settings</p>
+                </div>
+            `;
+        }
+        
+        function createAdminUser() {
+            const modal = document.createElement('div');
+            modal.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 30000; display: flex; align-items: center; justify-content: center;';
+            
+            modal.innerHTML = `
+                <div style="background: white; padding: 30px; border-radius: 8px; width: 90%; max-width: 400px;">
+                    <h3 style="margin: 0 0 20px 0;">Create Admin User</h3>
+                    <form id="createUserForm">
+                        <input type="email" id="newUserEmail" placeholder="Admin Email" required style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box;">
+                        <input type="password" id="newUserPassword" placeholder="Password (min 6 chars)" required minlength="6" style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box;">
+                        <input type="text" id="newUserName" placeholder="Full Name" required style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box;">
+                        <div style="display: flex; gap: 10px; margin-top: 20px;">
+                            <button type="submit" style="flex: 1; background: #28a745; color: white; border: none; padding: 12px; border-radius: 4px; cursor: pointer;">Create Admin</button>
+                            <button type="button" onclick="this.closest('div[style*="position: fixed"]').remove()" style="flex: 1; background: #6c757d; color: white; border: none; padding: 12px; border-radius: 4px; cursor: pointer;">Cancel</button>
+                        </div>
+                    </form>
+                    <div id="createUserMessage" style="margin-top: 15px; text-align: center;"></div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            modal.querySelector('#createUserForm').onsubmit = async (e) => {
+                e.preventDefault();
+                const email = document.getElementById('newUserEmail').value;
+                const password = document.getElementById('newUserPassword').value;
+                const name = document.getElementById('newUserName').value;
+                const messageDiv = document.getElementById('createUserMessage');
+                
+                try {
+                    const { data, error } = await supabase.auth.signUp({
+                        email: email,
+                        password: password,
+                        options: {
+                            data: {
+                                full_name: name,
+                                role: 'admin'
+                            }
+                        }
+                    });
+                    
+                    if (error) throw error;
+                    
+                    messageDiv.innerHTML = '<p style="color: #28a745;">Admin user created successfully! Check email for verification.</p>';
+                    setTimeout(() => modal.remove(), 3000);
+                } catch (error) {
+                    messageDiv.innerHTML = `<p style="color: #dc3545;">${error.message}</p>`;
+                }
+            };
+        }
+        
+        function viewAllUsers() {
+            alert('View All Users:\n\nThis feature would connect to Supabase to display:\n• All registered users\n• User roles and permissions\n• Registration dates\n• Account status');
+        }
+        
+        function securitySettings() {
+            alert('Security Settings:\n\nAvailable options:\n• Change admin password\n• Enable two-factor authentication\n• Set session timeouts\n• Configure access permissions');
+        }
+        
+        function removeFromCart(productId) {
+            let cart = JSON.parse(localStorage.getItem('lohobaCart') || '[]');
+            cart = cart.filter(item => item.id !== productId);
+            localStorage.setItem('lohobaCart', JSON.stringify(cart));
+            showOrderManager();
+            if (typeof updateCartBadge === 'function') updateCartBadge();
+        }
+        
+        function closeAdminPanel() {
+            // Disable admin mode
+            if (typeof window.toggleAdminMode === 'function') {
+                window.toggleAdminMode(false);
+            }
+            document.getElementById('adminPanel').remove();
+        }
+        
+        function showAnalytics() {
+            const content = document.getElementById('adminContent');
+            const cart = JSON.parse(localStorage.getItem('lohobaCart') || '[]');
+            const totalValue = cart.reduce((sum, item) => sum + (parseInt(item.price) * item.quantity), 0);
+            
+            content.innerHTML = `
+                <h2 style="margin-bottom: 20px; color: #333;"><i class="fas fa-chart-bar"></i> Analytics Dashboard</h2>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px;">
+                    <div style="background: #007bff; color: white; padding: 20px; border-radius: 8px; text-align: center;">
+                        <i class="fas fa-box" style="font-size: 24px; margin-bottom: 10px;"></i>
+                        <h3 style="margin: 0; font-size: 32px;">${window.sampleProducts ? window.sampleProducts.length : 0}</h3>
+                        <p style="margin: 5px 0 0 0; opacity: 0.9;">Total Products</p>
+                    </div>
+                    
+                    <div style="background: #28a745; color: white; padding: 20px; border-radius: 8px; text-align: center;">
+                        <i class="fas fa-shopping-cart" style="font-size: 24px; margin-bottom: 10px;"></i>
+                        <h3 style="margin: 0; font-size: 32px;">${cart.reduce((sum, item) => sum + item.quantity, 0)}</h3>
+                        <p style="margin: 5px 0 0 0; opacity: 0.9;">Items in Cart</p>
+                    </div>
+                    
+                    <div style="background: #ffc107; color: #333; padding: 20px; border-radius: 8px; text-align: center;">
+                        <i class="fas fa-naira-sign" style="font-size: 24px; margin-bottom: 10px;"></i>
+                        <h3 style="margin: 0; font-size: 32px;">₦${totalValue.toLocaleString()}</h3>
+                        <p style="margin: 5px 0 0 0; opacity: 0.8;">Cart Value</p>
+                    </div>
+                </div>
+                
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 8px;">
+                    <h3 style="margin: 0 0 15px 0; color: #333;">Quick Stats</h3>
+                    <p style="color: #666; margin: 5px 0;">• Website is running smoothly</p>
+                    <p style="color: #666; margin: 5px 0;">• Authentication system active</p>
+                    <p style="color: #666; margin: 5px 0;">• Cart functionality working</p>
+                    <p style="color: #666; margin: 5px 0;">• WhatsApp integration enabled</p>
+                </div>
+            `;
+        }
+        
+        function addNewProduct() {
+            const modal = document.createElement('div');
+            modal.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 30000; display: flex; align-items: center; justify-content: center;';
+            
+            modal.innerHTML = `
+                <div style="background: white; padding: 30px; border-radius: 8px; width: 90%; max-width: 500px; max-height: 90%; overflow-y: auto;">
+                    <h3 style="margin: 0 0 20px 0;">Add New Product</h3>
+                    <form id="addProductForm">
+                        <input type="text" id="productName" placeholder="Product Name" required style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box;">
+                        <input type="text" id="productBrand" placeholder="Brand" required style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box;">
+                        <input type="number" id="productPrice" placeholder="Price (₦)" required style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box;">
+                        <div style="margin: 8px 0;">
+                            <label style="display: block; margin-bottom: 5px; color: #333; font-weight: 500;">Product Image</label>
+                            <div style="border: 2px dashed #ddd; border-radius: 8px; padding: 20px; text-align: center; background: #fafafa; transition: all 0.3s ease;" id="imageUploadArea" ondrop="handleImageDrop(event)" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)">
+                                <i class="fas fa-cloud-upload-alt" style="font-size: 32px; color: #007bff; margin-bottom: 10px;"></i>
+                                <p style="margin: 10px 0; color: #666;">Drag & drop image here or click to browse</p>
+                                <input type="file" id="productImageFile" accept="image/*" onchange="handleImageUpload(this)" style="display: none;">
+                                <button type="button" onclick="document.getElementById('productImageFile').click()" style="background: #007bff; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; margin: 5px 0;">Choose Image</button>
+                                <small style="display: block; color: #999; margin-top: 10px;">Supports: JPG, PNG, GIF (max 2MB)</small>
+                                <input type="text" id="productImage" placeholder="Or enter image URL" style="width: 100%; padding: 8px; margin: 10px 0 0 0; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box;">
+                                <div id="imagePreview" style="margin-top: 15px;"></div>
+                            </div>
+                        </div>
+                        <select id="productType" required style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box;">
+                            <option value="">Select Type</option>
+                            <option value="false">Clothing</option>
+                            <option value="true">Accessory</option>
+                        </select>
+                        <div style="display: flex; gap: 10px; margin-top: 20px;">
+                            <button type="submit" style="flex: 1; background: #28a745; color: white; border: none; padding: 12px; border-radius: 4px; cursor: pointer;">Add Product</button>
+                            <button type="button" onclick="this.closest('div[style*="position: fixed"]').remove()" style="flex: 1; background: #6c757d; color: white; border: none; padding: 12px; border-radius: 4px; cursor: pointer;">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            modal.querySelector('#addProductForm').onsubmit = (e) => {
+                e.preventDefault();
+                const newProduct = {
+                    id: (Date.now()).toString(),
+                    name: document.getElementById('productName').value,
+                    brand: document.getElementById('productBrand').value,
+                    price: document.getElementById('productPrice').value,
+                    preview: document.getElementById('productImage').value,
+                    isAccessory: document.getElementById('productType').value === 'true'
+                };
+                
+                if (!window.sampleProducts) window.sampleProducts = [];
+                window.sampleProducts.push(newProduct);
+                localStorage.setItem('adminProducts', JSON.stringify(window.sampleProducts));
+                modal.remove();
+                showProductManager();
+                refreshWebsiteProducts();
+                
+                // Show success message
+                const successMsg = document.createElement('div');
+                successMsg.style.cssText = 'position: fixed; top: 20px; right: 20px; background: #28a745; color: white; padding: 15px; border-radius: 5px; z-index: 40000;';
+                successMsg.textContent = 'Product added successfully!';
+                document.body.appendChild(successMsg);
+                setTimeout(() => successMsg.remove(), 3000);
+            };
+        }
+        
+        function editProduct(id) {
+            const product = window.sampleProducts.find(p => p.id === id);
+            if (!product) return;
+            
+            const modal = document.createElement('div');
+            modal.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 30000; display: flex; align-items: center; justify-content: center;';
+            
+            modal.innerHTML = `
+                <div style="background: white; padding: 30px; border-radius: 8px; width: 90%; max-width: 500px; max-height: 90%; overflow-y: auto;">
+                    <h3 style="margin: 0 0 20px 0;">Edit Product</h3>
+                    <form id="editProductForm">
+                        <input type="text" id="editProductName" value="${product.name}" required style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box;">
+                        <input type="text" id="editProductBrand" value="${product.brand}" required style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box;">
+                        <input type="number" id="editProductPrice" value="${product.price}" required style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box;">
+                        <div style="margin: 8px 0;">
+                            <label style="display: block; margin-bottom: 5px; color: #333; font-weight: 500;">Product Image</label>
+                            <div style="border: 2px dashed #ddd; border-radius: 8px; padding: 20px; text-align: center; background: #fafafa; transition: all 0.3s ease;" id="editImageUploadArea" ondrop="handleImageDrop(event, 'edit')" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)">
+                                <div style="margin-bottom: 15px;">
+                                    <p style="color: #666; margin-bottom: 10px;">Current Image:</p>
+                                    <img src="${product.preview}" alt="Current image" style="max-width: 100px; max-height: 100px; border-radius: 8px; border: 2px solid #ddd;">
+                                </div>
+                                <i class="fas fa-cloud-upload-alt" style="font-size: 24px; color: #007bff; margin-bottom: 10px;"></i>
+                                <p style="margin: 10px 0; color: #666;">Drag & drop new image or click to browse</p>
+                                <input type="file" id="editProductImageFile" accept="image/*" onchange="handleImageUpload(this, 'edit')" style="display: none;">
+                                <button type="button" onclick="document.getElementById('editProductImageFile').click()" style="background: #007bff; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; margin: 5px 0;">Change Image</button>
+                                <small style="display: block; color: #999; margin-top: 10px;">Supports: JPG, PNG, GIF (max 2MB)</small>
+                                <input type="text" id="editProductImage" value="${product.preview}" placeholder="Or enter image URL" style="width: 100%; padding: 8px; margin: 10px 0 0 0; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box;">
+                                <div id="editImagePreview" style="margin-top: 15px;"></div>
+                            </div>
+                        </div>
+                        <select id="editProductType" required style="width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box;">
+                            <option value="false" ${!product.isAccessory ? 'selected' : ''}>Clothing</option>
+                            <option value="true" ${product.isAccessory ? 'selected' : ''}>Accessory</option>
+                        </select>
+                        <div style="display: flex; gap: 10px; margin-top: 20px;">
+                            <button type="submit" style="flex: 1; background: #007bff; color: white; border: none; padding: 12px; border-radius: 4px; cursor: pointer;">Update Product</button>
+                            <button type="button" onclick="this.closest('div[style*="position: fixed"]').remove()" style="flex: 1; background: #6c757d; color: white; border: none; padding: 12px; border-radius: 4px; cursor: pointer;">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            modal.querySelector('#editProductForm').onsubmit = (e) => {
+                e.preventDefault();
+                const index = window.sampleProducts.findIndex(p => p.id === id);
+                window.sampleProducts[index] = {
+                    ...product,
+                    name: document.getElementById('editProductName').value,
+                    brand: document.getElementById('editProductBrand').value,
+                    price: document.getElementById('editProductPrice').value,
+                    preview: document.getElementById('editProductImage').value,
+                    isAccessory: document.getElementById('editProductType').value === 'true'
+                };
+                
+                localStorage.setItem('adminProducts', JSON.stringify(window.sampleProducts));
+                modal.remove();
+                showProductManager();
+                refreshWebsiteProducts();
+            };
+        }
+        
+        function deleteProduct(id) {
+            const product = window.sampleProducts.find(p => p.id === id);
+            if (!product) return;
+            
+            if (confirm(`Are you sure you want to delete "${product.name}"?\n\nThis action cannot be undone.`)) {
+                window.sampleProducts = window.sampleProducts.filter(p => p.id !== id);
+                localStorage.setItem('adminProducts', JSON.stringify(window.sampleProducts));
+                showProductManager();
+                refreshWebsiteProducts();
+                
+                // Remove from cart if exists
+                let cart = JSON.parse(localStorage.getItem('lohobaCart') || '[]');
+                cart = cart.filter(item => item.id !== id);
+                localStorage.setItem('lohobaCart', JSON.stringify(cart));
+                if (typeof window.updateCartBadge === 'function') window.updateCartBadge();
+                
+                // Show success message
+                const successMsg = document.createElement('div');
+                successMsg.style.cssText = 'position: fixed; top: 20px; right: 20px; background: #dc3545; color: white; padding: 15px; border-radius: 5px; z-index: 40000;';
+                successMsg.textContent = 'Product deleted successfully!';
+                document.body.appendChild(successMsg);
+                setTimeout(() => successMsg.remove(), 3000);
+            }
+        }
+        
+        function refreshWebsiteProducts() {
+            // Refresh product display on main website
+            if (typeof window.loadProducts === 'function' && window.sampleProducts) {
+                window.loadProducts(window.sampleProducts);
+            }
+            // Also trigger refresh if on main page
+            if (typeof window.refreshWebsiteProducts === 'function') {
+                window.refreshWebsiteProducts();
+            }
+        }
+        
+        function clearCart() {
+            if (confirm('Are you sure you want to clear all cart items?\n\nThis will remove all items from the customer cart.')) {
+                localStorage.removeItem('lohobaCart');
+                showOrderManager();
+                if (typeof window.updateCartBadge === 'function') window.updateCartBadge();
+                
+                // Show success message
+                const successMsg = document.createElement('div');
+                successMsg.style.cssText = 'position: fixed; top: 20px; right: 20px; background: #ffc107; color: #333; padding: 15px; border-radius: 5px; z-index: 40000;';
+                successMsg.textContent = 'Cart cleared successfully!';
+                document.body.appendChild(successMsg);
+                setTimeout(() => successMsg.remove(), 3000);
+            }
+        }
+        
+        // Initialize admin products from localStorage if available
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedProducts = localStorage.getItem('adminProducts');
+            if (savedProducts) {
+                try {
+                    window.sampleProducts = JSON.parse(savedProducts);
+                } catch (e) {
+                    console.log('Error loading saved products');
+                }
+            }
+        });
+        
+        // Image upload functions
+        function handleDragOver(e) {
+            e.preventDefault();
+            e.currentTarget.style.borderColor = '#007bff';
+            e.currentTarget.style.background = '#f0f8ff';
+        }
+        
+        function handleDragLeave(e) {
+            e.preventDefault();
+            e.currentTarget.style.borderColor = '#ddd';
+            e.currentTarget.style.background = '#fafafa';
+        }
+        
+        function handleImageDrop(e, mode = 'add') {
+            e.preventDefault();
+            e.currentTarget.style.borderColor = '#ddd';
+            e.currentTarget.style.background = '#fafafa';
+            
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                processImageFile(files[0], mode);
+            }
+        }
+        
+        function handleImageUpload(input, mode = 'add') {
+            const file = input.files[0];
+            if (!file) return;
+            processImageFile(file, mode);
+        }
+        
+        function processImageFile(file, mode = 'add') {
+            if (!file.type.startsWith('image/')) {
+                alert('Please select a valid image file (JPG, PNG, GIF)!');
+                return;
+            }
+            
+            if (file.size > 2 * 1024 * 1024) {
+                alert('Image size should be less than 2MB!');
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const imageUrl = e.target.result;
+                const urlInput = mode === 'edit' ? 
+                    document.getElementById('editProductImage') : 
+                    document.getElementById('productImage');
+                const previewDiv = mode === 'edit' ? 
+                    document.getElementById('editImagePreview') : 
+                    document.getElementById('imagePreview');
+                
+                urlInput.value = imageUrl;
+                previewDiv.innerHTML = `
+                    <div style="text-align: center; margin-top: 15px;">
+                        <p style="color: #28a745; margin-bottom: 10px; font-weight: 500;">
+                            <i class="fas fa-check-circle"></i> Image uploaded successfully!
+                        </p>
+                        <img src="${imageUrl}" alt="Preview" style="max-width: 120px; max-height: 120px; border-radius: 8px; object-fit: cover; border: 3px solid #28a745;">
+                        <button type="button" onclick="removeUploadedImage('${mode}')" style="display: block; margin: 10px auto 0; background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 12px;">
+                            <i class="fas fa-trash"></i> Remove
+                        </button>
+                    </div>
+                `;
+            };
+            
+            reader.onerror = function() {
+                alert('Error reading image file!');
+            };
+            
+            reader.readAsDataURL(file);
+        }
+        
+        function removeUploadedImage(mode = 'add') {
+            const urlInput = mode === 'edit' ? 
+                document.getElementById('editProductImage') : 
+                document.getElementById('productImage');
+            const previewDiv = mode === 'edit' ? 
+                document.getElementById('editImagePreview') : 
+                document.getElementById('imagePreview');
+            
+            urlInput.value = '';
+            previewDiv.innerHTML = '';
+        }
+        
+        // Ensure admin functions are available globally
+        window.showProductManager = showProductManager;
+        window.showOrderManager = showOrderManager;
+        window.showUserManager = showUserManager;
+        window.showAnalytics = showAnalytics;
+        window.addNewProduct = addNewProduct;
+        window.editProduct = editProduct;
+        window.deleteProduct = deleteProduct;
+        window.clearCart = clearCart;
+        window.removeFromCart = removeFromCart;
+        window.createAdminUser = createAdminUser;
+        window.viewAllUsers = viewAllUsers;
+        window.securitySettings = securitySettings;
+        window.handleDragOver = handleDragOver;
+        window.handleDragLeave = handleDragLeave;
+        window.handleImageDrop = handleImageDrop;
+        window.handleImageUpload = handleImageUpload;
+        window.removeUploadedImage = removeUploadedImage;
+    </script>
+
+</body>
+</html>

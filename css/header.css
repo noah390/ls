@@ -1,0 +1,474 @@
+body
+{
+    margin: 0;
+}
+#badge
+{
+    position: absolute;
+    background-color: rgb(255, 30, 30);
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 10px;
+    top: -8px;
+    right: -8px;
+    min-width: 16px;
+    text-align: center;
+    z-index: 10;
+}
+#container
+{
+    background-color: white;
+    margin: auto;
+    text-align: center;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Lato', sans-serif;
+    z-index: 1000;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    height: 60px;
+}
+#shopName 
+{
+    font-family: 'Lato', sans-serif;
+    flex-shrink: 0;
+    position: relative;
+}
+#shopName a
+{
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: all 0.3s ease;
+}
+.logo-main
+{
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: #1a1a1a;
+    margin-bottom: -8px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+.logo-sub
+{
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 6px;
+    color: #666;
+    margin-left: 1px;
+}
+.logo-tagline
+{
+    font-size: 7px;
+    font-weight: 400;
+    letter-spacing: 1.5px;
+    color: #999;
+    margin-top: 1px;
+    text-transform: uppercase;
+}
+
+#collection
+{
+    font-weight: 600;
+    display: flex;
+    gap: 15px;
+    font-size: 13px;
+    flex: 1;
+    justify-content: center;
+}
+#collection a
+{
+    text-decoration: none;
+    color: #333;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+#collection a:hover
+{
+    background-color: #f8f9fa;
+    color: #007bff;
+}
+
+.search
+{
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6c757d;
+    font-size: 14px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+.search:hover
+{
+    color: #007bff;
+}
+#search
+{
+    position: relative;
+    width: 200px;
+    flex-shrink: 0;
+}
+
+.addedToCart
+{
+    font-size: 20px;
+    position: relative;
+    display: inline-block;
+}
+#user
+{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+#auth-buttons {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.auth-btn {
+    padding: 6px 12px;
+    border: 1px solid #007bff;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+#signInBtn {
+    background: transparent;
+    color: #007bff;
+}
+
+#signInBtn:hover {
+    background: #007bff;
+    color: white;
+}
+
+#signUpBtn {
+    background: #007bff;
+    color: white;
+}
+
+#signUpBtn:hover {
+    background: #0056b3;
+}
+
+.userIcon
+{
+    font-size: 20px;
+    transition: color 0.3s ease;
+}
+.userIcon:hover
+{
+    color: #007bff;
+}
+#input 
+{
+    width: 100%;
+    height: 32px;
+    padding: 6px 35px 6px 12px;
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 16px;
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+#input::placeholder
+{
+    font-weight: 400;
+    color: #6c757d;
+}
+#input:focus
+{
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+}
+#user a
+{
+    color: #333;
+    transition: color 0.3s ease;
+}
+#user a:hover
+{
+    color: #007bff;
+}
+
+/* User Menu Styles */
+#user-menu {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+#userName {
+    font-size: 12px;
+    font-weight: 500;
+    color: #333;
+    margin-right: 5px;
+}
+
+.user-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    min-width: 150px;
+    z-index: 1000;
+    display: none;
+}
+
+#user-menu:hover .user-dropdown {
+    display: block;
+}
+
+.user-dropdown a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+    font-size: 12px;
+    transition: background-color 0.3s;
+}
+
+.user-dropdown a:hover {
+    background-color: #f8f9fa;
+    color: #007bff;
+}
+
+.user-dropdown a:first-child {
+    border-radius: 8px 8px 0 0;
+}
+
+.user-dropdown a:last-child {
+    border-radius: 0 0 8px 8px;
+}
+
+/* Contact Section Styles */
+#contact-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+#contact-section a {
+    color: #333;
+    font-size: 18px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    padding: 3px;
+}
+
+#contact-section .fa-whatsapp:hover {
+    color: #25D366;
+}
+
+#contact-section .fa-phone:hover {
+    color: #007bff;
+}
+
+/* ----------------------------- MEDIA QUERY --------------------------- */
+
+@media(max-width: 1024px)
+{
+    #container {
+        padding: 8px 15px;
+    }
+    #search {
+        width: 150px;
+    }
+    #collection {
+        gap: 10px;
+        font-size: 12px;
+    }
+    #shopName {
+        font-size: 22px;
+        letter-spacing: 1.2px;
+    }
+}
+
+@media(max-width: 768px)
+{
+    #container {
+        padding: 8px 12px;
+        height: 55px;
+    }
+    #search {
+        width: 120px;
+    }
+    #input {
+        height: 28px;
+        font-size: 11px;
+        padding: 4px 30px 4px 10px;
+    }
+    .search {
+        font-size: 12px;
+        right: 8px;
+    }
+    #collection {
+        gap: 8px;
+        font-size: 11px;
+    }
+    #shopName {
+        font-size: 20px;
+        letter-spacing: 1px;
+    }
+    #contact-section a {
+        font-size: 16px;
+    }
+    .addedToCart {
+        font-size: 18px;
+    }
+    .userIcon {
+        font-size: 18px;
+    }
+    .auth-btn {
+        padding: 4px 8px;
+        font-size: 10px;
+    }
+    #auth-buttons {
+        gap: 6px;
+    }
+}
+
+@media(max-width: 600px)
+{
+    #container {
+        padding: 6px 10px;
+        height: 50px;
+    }
+    #search {
+        width: 100px;
+    }
+    #input {
+        height: 24px;
+        font-size: 10px;
+        padding: 3px 25px 3px 8px;
+    }
+    .search {
+        font-size: 10px;
+        right: 6px;
+    }
+    #collection {
+        gap: 6px;
+        font-size: 10px;
+    }
+    #shopName {
+        font-size: 18px;
+        letter-spacing: 0.8px;
+    }
+    #contact-section a {
+        font-size: 14px;
+        padding: 2px;
+    }
+    #contact-section {
+        gap: 6px;
+    }
+    .addedToCart {
+        font-size: 16px;
+    }
+    .userIcon {
+        font-size: 16px;
+    }
+    #user {
+        gap: 6px;
+    }
+    .auth-btn {
+        padding: 3px 6px;
+        font-size: 9px;
+    }
+    #auth-buttons {
+        gap: 4px;
+    }
+}
+
+@media(max-width: 480px)
+{
+    #container {
+        padding: 5px 8px;
+        height: 45px;
+    }
+    #search {
+        width: 80px;
+    }
+    #input {
+        height: 20px;
+        font-size: 9px;
+        padding: 2px 20px 2px 6px;
+    }
+    .search {
+        font-size: 9px;
+        right: 4px;
+    }
+    #collection {
+        gap: 4px;
+        font-size: 9px;
+    }
+    #shopName {
+        font-size: 16px;
+        letter-spacing: 0.5px;
+    }
+    #contact-section a {
+        font-size: 12px;
+    }
+    .addedToCart {
+        font-size: 14px;
+    }
+    .userIcon {
+        font-size: 14px;
+    }
+    #badge {
+        font-size: 8px;
+        padding: 1px 4px;
+        min-width: 12px;
+    }
+}
+/* Add margin to body to account for fixed header */
+body {
+    margin-top: 70px;
+}
+
+@media(max-width: 768px) {
+    body {
+        margin-top: 65px;
+    }
+}
+
+@media(max-width: 600px) {
+    body {
+        margin-top: 60px;
+    }
+}
+
+@media(max-width: 480px) {
+    body {
+        margin-top: 55px;
+    }
+}
