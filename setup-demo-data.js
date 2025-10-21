@@ -103,17 +103,15 @@ function setupDemoData() {
     localStorage.setItem('generalSettings', JSON.stringify(generalSettings));
 
     console.log('Demo data setup complete!');
-    alert('Demo data has been set up successfully!\n\nYou can now:\n- View demo users in the admin panel\n- See sample orders and analytics\n- Test all admin features\n\nDefault admin login:\nUsername: admin\nPassword: LHL2024');
 }
 
-// Auto-setup on page load
-document.addEventListener('DOMContentLoaded', function() {
-    // Check if demo data already exists
-    if (!localStorage.getItem('demoDataSetup')) {
-        setupDemoData();
-        localStorage.setItem('demoDataSetup', 'true');
-    }
-});
+// Auto-setup disabled for production
+// document.addEventListener('DOMContentLoaded', function() {
+//     if (!localStorage.getItem('demoDataSetup')) {
+//         setupDemoData();
+//         localStorage.setItem('demoDataSetup', 'true');
+//     }
+// });
 
 // Manual setup function
 function resetDemoData() {
